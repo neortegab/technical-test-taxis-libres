@@ -1,23 +1,25 @@
 package com.taxislibres.technicaltest.Models;
+
+
 public class Bill {
     private long id;
     private double totalAmount;
     private String desc;
-    private long userId;
+    private User user;
 
     public Bill(){}
 
-    public Bill(double totalAmount, String desc, long userId) {
+    public Bill(double totalAmount, String desc, User user) {
         this.totalAmount = totalAmount;
         this.desc = desc;
-        this.userId = userId;
+        this.user = user;
     }
 
-    public Bill(long id, double totalAmount, String desc, long userId){
+    public Bill(long id, double totalAmount, String desc, User user){
         this.id = id;
         this.totalAmount = totalAmount;
         this.desc = desc;
-        this.userId = userId;
+        this.user = user;
     }
 
     public long getId() {
@@ -44,11 +46,11 @@ public class Bill {
         this.desc = desc;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
     }
 }
