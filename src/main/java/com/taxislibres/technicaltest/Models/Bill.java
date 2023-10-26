@@ -1,10 +1,16 @@
 package com.taxislibres.technicaltest.Models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
+@Entity
 public class Bill {
-    private long id;
+    @Id
+    private Long id;
     private double totalAmount;
     private String desc;
+    @ManyToOne
     private User user;
 
     public Bill(){}

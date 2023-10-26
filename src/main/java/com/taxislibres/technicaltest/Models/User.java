@@ -1,6 +1,12 @@
 package com.taxislibres.technicaltest.Models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class User {
-    private long id;
+    @Id
+    private Long id;
     private String name;
     private String email;
     private int age;
