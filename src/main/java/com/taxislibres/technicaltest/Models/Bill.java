@@ -1,12 +1,11 @@
 package com.taxislibres.technicaltest.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Bill {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private double totalAmount;
     private String desc;
