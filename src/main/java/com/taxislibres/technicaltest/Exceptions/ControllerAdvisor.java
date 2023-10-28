@@ -20,7 +20,6 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         body.put("message", ex.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
-
     @ExceptionHandler(AlreadyExistsException.class)
     public ResponseEntity<?> handleEntityAlreadyExists(AlreadyExistsException ex, WebRequest req){
         var body = new LinkedHashMap<String, Object>();

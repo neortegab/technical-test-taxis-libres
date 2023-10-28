@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import java.util.List;
-
 @Entity
 @Table(name="Users")
 @Data
@@ -30,7 +28,6 @@ public class User {
 
     @Min(0)
     private int age;
-
     @OneToMany
     private List<Bill> bills;
 

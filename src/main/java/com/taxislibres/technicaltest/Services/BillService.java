@@ -25,7 +25,6 @@ public class BillService {
     public Bill getBillById(Long id){
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Bill", id));
     }
-
     public Bill createBill(Bill bill){
         return repository.save(bill);
     }
