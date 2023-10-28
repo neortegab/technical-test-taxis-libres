@@ -1,7 +1,10 @@
 package com.taxislibres.technicaltest.Models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.NonNull;
 
 import java.util.List;
 
@@ -11,10 +14,12 @@ public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String name;
+    @Email
     private String email;
+    @Min(0)
     private int age;
-
     @OneToMany
     private List<Bill> bills;
 
