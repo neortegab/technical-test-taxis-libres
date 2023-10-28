@@ -3,6 +3,8 @@ package com.taxislibres.technicaltest.Models;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.List;
+
 @Entity
 @Table(name="Users")
 public class User {
@@ -12,6 +14,9 @@ public class User {
     private String name;
     private String email;
     private int age;
+
+    @OneToMany
+    private List<Bill> bills;
 
     public User(){}
 

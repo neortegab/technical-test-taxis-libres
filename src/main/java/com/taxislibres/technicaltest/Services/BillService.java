@@ -19,9 +19,6 @@ public class BillService {
     public List<Bill> getAllBills(){
         return repository.findAll();
     }
-    public List<Bill> getAllBillsByUser(Long userId){
-        return repository.findByUserId(userId);
-    }
     public Optional<Bill> getBillById(Long id){
         return repository.findById(id);
     }
