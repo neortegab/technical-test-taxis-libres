@@ -1,6 +1,5 @@
 package com.taxislibres.technicaltest.Controllers;
 
-import com.taxislibres.technicaltest.Models.Bill;
 import com.taxislibres.technicaltest.Models.User;
 import com.taxislibres.technicaltest.Services.UserService;
 

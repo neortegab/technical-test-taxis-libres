@@ -2,8 +2,6 @@ package com.taxislibres.technicaltest.Services;
 
 import com.taxislibres.technicaltest.Exceptions.NotFoundException;
 import com.taxislibres.technicaltest.Models.Bill;
-import com.taxislibres.technicaltest.Repositories.BillRepository;
-import com.taxislibres.technicaltest.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
