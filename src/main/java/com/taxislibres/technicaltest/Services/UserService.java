@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -21,10 +20,10 @@ public class UserService {
         return repository.findAll();
     }
 
-    public Optional<User> getUserById(Long id){
+    public User getUserById(Long id){
         var user = repository.findById(id);
         if(user.isEmpty()) throw new NotFoundException("User", id);
-        return user;
+        return user.get();
     }
 
     public User createUser(User user){

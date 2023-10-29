@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.NonNull;
 
 import java.util.List;
 
@@ -25,10 +24,11 @@ public class User {
 
     public User(){}
 
-    public User(String name, String email, int age) {
+    public User(String name, String email, int age, List<Bill> bills) {
         this.name = name;
         this.email = email;
         this.age = age;
+        this.bills = bills;
     }
 
     public Long getId() {
@@ -61,5 +61,14 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+
+    public List<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
     }
 }

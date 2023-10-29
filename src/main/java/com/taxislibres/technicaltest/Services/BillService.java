@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BillService {
@@ -19,10 +18,12 @@ public class BillService {
     public List<Bill> getAllBills(){
         return repository.findAll();
     }
-    public Optional<Bill> getBillById(Long id){
+
+    public List<Bill> getAllByUserId(Long userId) { return repository.findByUserId(userId); }
+    public Bill getBillById(Long id){
         var bill = repository.findById(id);
         if(bill.isEmpty()) throw new NotFoundException("Bill", id);
-        return bill;
+        return bill.get();
     }
     public Bill createBill(Bill bill){
         return repository.save(bill);
@@ -30,9 +31,11 @@ public class BillService {
     public Bill updateBill(Bill newBill, Long billId){
         var bill = repository.findById(billId);
         if(bill.isEmpty()) throw new NotFoundException("Bill", billId);
-        if(newBill.getDescription() == null) newBill.setDescription(bill.get().getDescription());
-        if(newBill.getTotalAmount() == 0) newBill.setTotalAmount(bill.get().getTotalAmount());
-        newBill.setId(bill.get().getId());
+        var oldBill = bill.get();
+        if(newBill.getDescription() == null) newBill.setDescription(oldBill.getDescription());
+        if(newBill.getTotalAmount() == 0) newBill.setTotalAmount(oldBill.getTotalAmount());
+        newBill.setId(oldBill.getId());
+        newBill.setUser(oldBill.getUser());
         return repository.save(newBill);
     }
     public Bill deleteBill(Long billId){
