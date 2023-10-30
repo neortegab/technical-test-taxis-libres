@@ -1,5 +1,6 @@
 package com.taxislibres.technicaltest.Services;
 
+import com.taxislibres.technicaltest.Exceptions.AlreadyExistsException;
 import com.taxislibres.technicaltest.Exceptions.NotFoundException;
 import com.taxislibres.technicaltest.Models.User;
 import com.taxislibres.technicaltest.Models.UserRole;
@@ -34,6 +35,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User createUser(User user){
+        if(repository.findByEmail(user.getEmail()).isPresent()) throw new AlreadyExistsException("User already exists");
         return repository.save(user);
     }
 
