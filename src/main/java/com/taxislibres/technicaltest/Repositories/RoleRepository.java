@@ -1,13 +1,11 @@
 package com.taxislibres.technicaltest.Repositories;
 
-import com.taxislibres.technicaltest.Models.User;
+import com.taxislibres.technicaltest.Models.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
-    Boolean existsByEmail(String email);
+public interface RoleRepository extends JpaRepository<UserRole, Long> {
+    Optional<UserRole> findByRole(String role);
 }

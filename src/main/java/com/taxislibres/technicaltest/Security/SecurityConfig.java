@@ -1,5 +1,7 @@
 package com.taxislibres.technicaltest.Security;
 
+import com.taxislibres.technicaltest.Services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,6 +14,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private UserService userService;
+
+    @Autowired
+    public SecurityConfig(UserService userService){ this.userService = userService; }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity
@@ -19,10 +25,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authorize -> authorize
                                 .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers(HttpMethod.GET).authenticated()
-                                .requestMatchers(HttpMethod.POST).authenticated()
-                                .requestMatchers(HttpMethod.PUT).authenticated()
-                                .requestMatchers(HttpMethod.DELETE).authenticated()
                                 .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
