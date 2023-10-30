@@ -17,8 +17,10 @@ public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
     @NotNull
     private String name;
+
     @Email
     private String email;
 
@@ -26,6 +28,7 @@ public class User {
 
     @Min(0)
     private int age;
+
     @OneToMany
     private List<Bill> bills;
 

@@ -15,17 +15,21 @@ public class BillService {
     public BillService(BillRepository repository) {
         this.repository = repository;
     }
+
     public List<Bill> getAllBills(){
         return repository.findAll();
     }
 
     public List<Bill> getAllByUserId(Long userId) { return repository.findByUserId(userId); }
+
     public Bill getBillById(Long id){
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Bill", id));
     }
+
     public Bill createBill(Bill bill){
         return repository.save(bill);
     }
+
     public Bill updateBill(Bill newBill, Long billId){
         var bill = repository.findById(billId).orElseThrow(() -> new NotFoundException("Bill", billId));
         if(newBill.getDescription() == null) newBill.setDescription(bill.getDescription());
@@ -34,6 +38,7 @@ public class BillService {
         newBill.setUser(bill.getUser());
         return repository.save(newBill);
     }
+
     public Bill deleteBill(Long billId){
         var bill = repository.findById(billId).orElseThrow(() -> new NotFoundException("bill", billId));
         repository.deleteById(billId);
