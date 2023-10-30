@@ -21,9 +21,7 @@ public class UserService {
     }
 
     public User getUserById(Long id){
-        var user = repository.findById(id);
-        if(user.isEmpty()) throw new NotFoundException("User", id);
-        return user.get();
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("User", id));
     }
 
     public User createUser(User user){
@@ -31,18 +29,16 @@ public class UserService {
     }
 
     public User updateUser(User newUser, Long userId) {
-        var user = repository.findById(userId);
-        if(user.isEmpty()) throw new NotFoundException("User", userId);
-        if(newUser.getName() == null) newUser.setName(user.get().getName());
-        if(newUser.getAge() == 0) newUser.setAge(user.get().getAge());
-        if(newUser.getEmail() == null) newUser.setEmail(user.get().getEmail());
-        newUser.setId(user.get().getId());
+        var user = repository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
+        if(newUser.getName() == null) newUser.setName(user.getName());
+        if(newUser.getAge() == 0) newUser.setAge(user.getAge());
+        if(newUser.getEmail() == null) newUser.setEmail(user.getEmail());
+        newUser.setId(user.getId());
         return repository.save(newUser);
     }
 
     public void deleteUser(Long userId){
-        var user = repository.findById(userId);
-        if(user.isEmpty()) throw new NotFoundException("User", userId);
+        repository.findById(userId).orElseThrow(() -> new NotFoundException("User", userId));
         repository.deleteById(userId);
     }
 }
