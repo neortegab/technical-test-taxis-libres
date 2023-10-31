@@ -2,6 +2,7 @@ package com.taxislibres.technicaltest.Controllers;
 
 import com.taxislibres.technicaltest.Models.User;
 import com.taxislibres.technicaltest.Services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +26,6 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody User user){
-        return new ResponseEntity<>(userService.createUser(user), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

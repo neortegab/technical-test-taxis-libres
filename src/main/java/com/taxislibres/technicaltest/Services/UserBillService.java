@@ -24,10 +24,11 @@ public class UserBillService {
 
     public Bill getUserBillById(Long userId, Long billId){
         var user = userService.getUserById(userId);
-        for(var userBill : user.getBills()){
-            if(userBill.getId().equals(billId)) return userBill;
-        }
-        throw new NotFoundException("User", userId, "Bill", billId);
+        return user.getBills()
+                .stream()
+                .filter(bill -> bill.getId().equals(billId))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("User", userId, "Bill", billId));
     }
 
     public Bill createUserBill(Long userId, Bill bill){
@@ -43,16 +44,11 @@ public class UserBillService {
     }
 
     public Bill deleteUserBill(Long userId, Long billId){
-        var bill = billService.getBillById(billId);
         var userBills = getBillsByUserId(userId);
-        var found = false;
-        for(var userBill: userBills){
-            if(userBill.getId().equals(bill.getId())){
-                found = true;
-                break;
-            }
-        }
-        if(!found) throw new NotFoundException("User", userId, "bill", billId);
-        return billService.deleteBill(billId);
+        var bill = userBills.stream()
+                .filter(b -> b.getId().equals(billId))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("User", userId, "bill", billId));
+        return billService.deleteBill(bill.getId());
     }
 }
